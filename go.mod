@@ -1,6 +1,6 @@
 module chat
 
-go 1.13
+go 1.16
 
 require (
 	github.com/go-redis/redis/v7 v7.2.0
