@@ -1,23 +1,26 @@
-FROM golang:1.16-alpine
+FROM golang:alpine as server
+
+ENV CGO_ENABLED=0
 
 # Add dependencies into mod cache
 COPY go.mod go.sum /src/
 WORKDIR /src
-
-ENV GOPATH /go
-ENV PATH $PATH:/go/bin:$GOPATH/bin
 
 RUN go mod download
 
 # Add the application itself and build it
 COPY                  ./          /src/
 
-RUN go build \ 
-    -mod=readonly \
-    -o websocket-server
+RUN go build \
+      -mod=readonly \
+      -o websocket-server
 
-EXPOSE 8080
+
+FROM scratch
+
+COPY --from=server /src/websocket-server /usr/local/bin/
+
+EXPOSE 8080/tcp
 STOPSIGNAL SIGINT
-ENTRYPOINT ["/usr/local/bin/websocket-server"]
 
-CMD [ "/usr/local/bin/websocket-server" ]
+ENTRYPOINT ["/usr/local/bin/websocket-server"]
