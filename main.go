@@ -4,24 +4,25 @@ import (
 	"chat/api"
 	"chat/user"
 	"fmt"
-	"github.com/go-redis/redis/v7"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/go-redis/redis/v7"
+	"github.com/gorilla/mux"
 )
 
 var rdb *redis.Client
 
 func init() {
-	rdb := redis.NewClient(&redis.Options{Addr: "localhost:6379"})
+	rdb := redis.NewClient(&redis.Options{Addr: "127.0.0.1:6379"})
 	defer rdb.Close()
 	rdb.SAdd(user.ChannelsKey, "general", "random")
 }
 
 func main() {
 
-	rdb = redis.NewClient(&redis.Options{Addr: "localhost:6379"})
+	rdb = redis.NewClient(&redis.Options{Addr: "127.0.0.1:6379"})
 
 	r := mux.NewRouter()
 
