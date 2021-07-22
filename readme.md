@@ -39,3 +39,6 @@ create container from image:
 
 run interactive mode:
 `docker run --rm -it -p 8080:8080 websocket-server`
+
+build from docker-compose:
+`sudo docker-compose --compatibility up --build`

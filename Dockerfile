@@ -20,7 +20,7 @@ FROM scratch
 
 COPY --from=server /src/websocket-server /usr/local/bin/
 
-EXPOSE 8080
+EXPOSE 5000
 STOPSIGNAL SIGINT
 
 ENTRYPOINT ["/usr/local/bin/websocket-server"]

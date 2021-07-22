@@ -32,7 +32,7 @@
     function connect(){
         let user = document.getElementById("user").value;
         let port = document.getElementById("port").value;
-        socket = new WebSocket("ws://localhost/chat?username="+user);
+        socket = new WebSocket("ws://localhost:"+port+"/chat?username="+user);
         socket.onmessage = function(event) {
             console.log(`[message] Data received from server: ${event.data}`);
         };

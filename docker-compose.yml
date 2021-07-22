@@ -12,7 +12,7 @@ services:
     build: "."
       # Exposes the port 5000 from a container and binds it to a random port
     ports:
-      - "8080"
+      - "5000"
       # If the container goes down, it will restart
     restart: "always"
       # Connects the API to a common api.network bridge
