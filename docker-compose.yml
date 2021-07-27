@@ -15,6 +15,3 @@ services:
       - "8080:8080"
       # If the container goes down, it will restart
     restart: "always"
-    
-networks: 
-  websocket-server.network:

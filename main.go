@@ -41,7 +41,7 @@ func main() {
 
 	port := ":" + os.Getenv("PORT")
 	if port == ":" {
-		port = ":5000"
+		port = ":8080"
 	}
 	fmt.Println("socket started on port", port)
 	log.Fatal(http.ListenAndServe(port, r))
